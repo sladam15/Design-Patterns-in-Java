@@ -18,7 +18,6 @@ public class Main {
     public static void main(String[] args) {
 
         int cycle = 1;
-        boolean evolve = false;
 
         Trainer trainer = new Trainer(Trainer.Name.ASH);
         trainer.showMessage();  // singleton design pattern
