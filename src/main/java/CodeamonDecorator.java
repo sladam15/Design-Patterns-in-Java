@@ -11,7 +11,7 @@ public class CodeamonDecorator implements CodeamonInterface {
      * Constructor for codeamon.
      */
     public CodeamonDecorator(CodeamonInterface c) {
-        this.codeamon=codeamon;
+        this.codeamon = codeamon;
     }
 
     /**

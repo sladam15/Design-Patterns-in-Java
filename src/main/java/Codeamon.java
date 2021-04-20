@@ -17,7 +17,7 @@ public class Codeamon implements CodeamonInterface {
     public Stats stats;
     public double weatherBonus = 1.0; 
     public double typeBonus = 1.0;
-    public int buf_counter = 0;
+    public int buffCounter = 0;
 
     private List<Observer> observers = new ArrayList<Observer>();
     private int state;
@@ -53,6 +53,9 @@ public class Codeamon implements CodeamonInterface {
         observers.add(observer);
     }
 
+    /**
+     * Method will notify all observers of a new codeamon.
+     */
     public void notifyAllObservers() {
         for (Observer observer : observers) {
             observer.update();
@@ -100,16 +103,16 @@ public class Codeamon implements CodeamonInterface {
 
         while (true) {
             attackNumber = ThreadLocalRandom.current().nextInt(0, 4);
-            if (attackNumber == 0 && buf_counter <= 2) {
-                buf_counter++;
+            if (attackNumber == 0 && buffCounter <= 2) {
+                buffCounter++;
                 break;
             }
-            else if (attackNumber != 0){
+            else if (attackNumber != 0) {
                 break;
             }
         }
 
-        String moveName= "";
+        String moveName = "";
         Attack attack = null;
 
         switch (name) {

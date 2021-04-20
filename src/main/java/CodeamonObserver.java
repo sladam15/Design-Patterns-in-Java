@@ -5,9 +5,9 @@
  has been detected and assist in notifying all observers.
  */
 
-public class CodeamonObserver extends Observer{
+public class CodeamonObserver extends Observer {
 
-    public CodeamonObserver(Codeamon codeamon){
+    public CodeamonObserver(Codeamon codeamon) {
         this.codeamon = codeamon;
         this.codeamon.attach(this);
     }

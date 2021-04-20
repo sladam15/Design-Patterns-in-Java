@@ -19,6 +19,12 @@ public class Environment {
         this(Weather.neutral);
     }
 
+    /**
+     * Environment constructor features a
+     * switch case which applies buffs or
+     * debuffs if the weather is of a
+     * particular value.
+     */
     public Environment(Weather weather) {
         this.WEATHER = weather;
         this.buffModifier = 1.25;
@@ -42,7 +48,7 @@ public class Environment {
     /**
      * Getter method for the buffed type of Codeamon.
      */
-    public String GetBuffedType() {
+    public String getBuffedType() {
         return buffedType;
     }
 

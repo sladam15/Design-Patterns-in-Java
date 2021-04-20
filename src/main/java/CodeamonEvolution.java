@@ -14,7 +14,7 @@ public class CodeamonEvolution  extends CodeamonDecorator {
      * The following method assembles an evolved Codeamon.
      */
     @Override
-    public void assemble(){
+    public void assemble() {
         super.assemble();
         System.out.print("A new evolution has been performed.");
     }

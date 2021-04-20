@@ -11,12 +11,14 @@
   program.
 */
 
-import java.util.Scanner;
-
 public class Main {
+    /**
+     * Main method.
+     */
     public static void main(String[] args) {
 
         int cycle = 1;
+        boolean evolve = false;
 
         Trainer trainer = new Trainer(Trainer.Name.ASH);
         trainer.showMessage();  // singleton design pattern
@@ -30,6 +32,7 @@ public class Main {
         Codeamon codeamon4 = new Codeamon(Codeamon.Name.PSYDUCK);
         Codeamon codeamon5 = new Codeamon(Codeamon.Name.MAROWAK);
 
+        // Initiate Observers
         new CodeamonObserver(codeamon1);
         codeamon1.setState(15);
         new CodeamonObserver(codeamon2);
@@ -53,122 +56,51 @@ public class Main {
         // Night 1 - All Codeamon
         System.out.println("Night " + cycle);
         fight1.setEnvironment(Environment.Weather.neutral);
-        Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-        System.out.println("Would you like to evolve your Codeamon? (Y/N)");
-        String input = myObj.nextLine();  // Read user input
-        if ((input.equals("Y")) || (input.equals("y"))) {
-            System.out.println("You have chosen to evolve your Codeamon");
 
-            new CodeamonObserver(codeamon5);
-            codeamon5.setState(15);
-
-            System.out.println("Your CUBONE has evolved into a MAROWAK");
-
-            cycle++;
-
-            // Day 2 - Evolved Codeamon
-            System.out.println("Day " + cycle);
-            Battle fight2 = new Battle(trainer, trainer2, codeamon5, codeamon4);
-            fight2.setEnvironment(Environment.Weather.sunny);
-            fight2.initiateBattle();
-            System.out.println();
-            System.out.println("The battle has ended!");
-            System.out.println("------------------------------");
-            System.out.println();
-
-            System.out.println("Night " + cycle);
-            fight1.setEnvironment(Environment.Weather.rainy);
-        } else {
-
-            // Day 2 - Normal Codeamon
-            cycle++;
-            System.out.println("------------------------------");
-            System.out.println("Day " + cycle);
-            Battle fight2 = new Battle(trainer, trainer2, codeamon1, codeamon3);
-            fight2.setEnvironment(Environment.Weather.sunny);
-            fight2.initiateBattle();
-            System.out.println();
-            System.out.println("The battle has ended!");
-            System.out.println("------------------------------");
-            System.out.println();
-
-            // Night 2 - Normal Codeamon
-            System.out.println("Night " + cycle);
-            fight1.setEnvironment(Environment.Weather.rainy);
-
-        }
+        System.out.println("Your Codeamon is not ready to evolve yet. Keep battling.");
+        System.out.println("Your Codeamon will evolve with enough XP.");
 
         cycle++;
 
-        if ((input.equals("Y")) || (input.equals("y"))) {
+        // Day 2 - Normal Codeamon
+        System.out.println("------------------------------");
+        System.out.println("Day " + cycle);
+        Battle fight2 = new Battle(trainer, trainer2, codeamon1, codeamon3);
+        fight2.setEnvironment(Environment.Weather.sunny);
+        fight2.initiateBattle();
+        System.out.println();
+        System.out.println("The battle has ended!");
+        System.out.println("------------------------------");
+        System.out.println();
 
-            System.out.println("Your codeamon has already evolved to its final form!");
-            System.out.println("------------------------------");
-            System.out.println();
+        // Night 2 - Normal Codeamon
+        System.out.println("Night " + cycle);
+        fight1.setEnvironment(Environment.Weather.rainy);
 
-            // Day 3 - Evolved Codeamon
-            System.out.println("Day " + cycle);
-            Battle fight2 = new Battle(trainer, trainer2, codeamon5, codeamon4);
-            fight2.setEnvironment(Environment.Weather.sunny);
-            fight2.initiateBattle();
-            System.out.println();
-            System.out.println("The battle has ended!");
-            System.out.println("------------------------------");
-            System.out.println();
+        System.out.println("Your Codeamon is ready to evolve!");
+        new CodeamonObserver(codeamon5);
+        codeamon5.setState(15);
 
-            System.out.println("Night " + cycle);
-            fight1.setEnvironment(Environment.Weather.rainy);
-        } else {
-            System.out.println("Would you like to evolve your Codeamon? (Y/N)");
-            String input2 = myObj.nextLine();  // Read user input
+        System.out.println("Your CUBONE has evolved into a MAROWAK");
 
-            if ((input2.equals("Y")) || (input2.equals("y"))) {
-                System.out.println("You have chosen to evolve your Codeamon");
-                new CodeamonObserver(codeamon5);
-                codeamon5.setState(15);
+        cycle++;
 
-                System.out.println("Your CUBONE has evolved into a MAROWAK");
+        // Day 3 - Evolved Codeamon
+        System.out.println("Day " + cycle);
+        Battle fight3 = new Battle(trainer, trainer2, codeamon5, codeamon4);
+        fight3.setEnvironment(Environment.Weather.neutral);
+        fight3.initiateBattle();
+        System.out.println();
+        System.out.println("The battle has ended!");
+        System.out.println("------------------------------");
+        System.out.println();
 
-                System.out.println("Day " + cycle);
-                Battle fight3 = new Battle(trainer, trainer2, codeamon5, codeamon4);
-                fight3.setEnvironment(Environment.Weather.neutral);
-                fight3.initiateBattle();
-                System.out.println();
-                System.out.println("The battle has ended!");
-                System.out.println("------------------------------");
-                System.out.println();
+        System.out.println("Night " + cycle);
+        fight3.setEnvironment(Environment.Weather.rainy);
 
-                System.out.println("Night " + cycle);
-                fight1.setEnvironment(Environment.Weather.rainy);
+        System.out.println("Your Codeamon has already evolved to its final form!");
+        System.out.println("------------------------------");
 
-                System.out.println("Your codeamon has already evolved to its final form!");
-            } else {
-
-                System.out.println("------------------------------");
-                System.out.println("Day " + cycle);
-                Battle fight3 = new Battle(trainer, trainer2, codeamon1, codeamon3);
-                fight3.setEnvironment(Environment.Weather.sunny);
-                fight3.initiateBattle();
-                System.out.println();
-                System.out.println("The battle has ended!");
-                System.out.println("------------------------------");
-                System.out.println();
-
-                System.out.println("Night " + cycle);
-                fight1.setEnvironment(Environment.Weather.rainy);
-
-                System.out.println("Would you like to evolve your Codeamon? (Y/N)");
-                String input3 = myObj.nextLine();  // Read user input
-
-                if ((input3.equals("Y")) || (input3.equals("y"))) {
-                    System.out.println("You have chosen to evolve your Codeamon");
-                    new CodeamonObserver(codeamon5);
-                    codeamon5.setState(15);
-
-                    System.out.println("Your CUBONE has evolved into a MAROWAK");
-                }
-            }
-        }
         System.out.println("A cycle of 3 days has finished");
     }
 }

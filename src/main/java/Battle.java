@@ -20,7 +20,8 @@ public class Battle {
     int winnerTotal = 0;
 
     /**
-     * Battle constructor which has setter methods for two trainers and two codeamon.
+     * Battle constructor which has setter
+     * methods for two trainers and two codeamon.
      */
     public Battle(Trainer train1, Trainer train2, Codeamon pMon1, Codeamon pMon2) {
         setTrainer(train1);
@@ -30,20 +31,27 @@ public class Battle {
     }
 
     /**
-     * Sets environment of the battlefield, and sets buff/debuff modifiers for all Codeamons on the
-     * field. If the Mascotmon's type is buffed by the environment,they receive a 25% multiplier to
-     * their attack and defense stat. If the Mascotmon's type is debuffed by the environment, they
-     * receive a reduction of 25% to their attack and defense stat.
-     * @param weather is the weather enum to use from Environment class
+     * Sets environment of the battlefield, and
+     * sets buff/debuff modifiers for all Codeamons
+     * on the field. If the Mascotmon's type is
+     * buffed by the environment,they receive a
+     * 25% multiplier to their attack and defense
+     * stat. If the Mascotmon's type is debuffed
+     * by the environment, they receive a reduction
+     * of 25% to their attack and defense stat.
+     * @param weather is the weather enum to use
+     *                from Environment class
      */
     public void setEnvironment(Environment.Weather weather) {
         battleWeather = new Environment(weather);
     }
 
     /**
-     * This void method prepares for a battle. Stats are applied to the two codeamon and weather conditions
-     * are announced. The program will display outputs of who is battling, and announce a winner
-     * and reward.
+     * This void method prepares for a battle.
+     * Stats are applied to the two codeamon and
+     * weather conditions are announced. The
+     * program will display outputs of who is
+     * battling, and announce a winner and reward.
      */
     public void initiateBattle() {
         mon1Stats = new Stats(mon1.name);
@@ -69,10 +77,12 @@ public class Battle {
     }
 
     /**
-     * This void method starts the battle. Stats are applied to the two codeamon and weather conditions
-     * are announced. The program will display details of each attack, and how much health the current
-     * codeamon has left. Program will display an output when a codeamon has fainted. This method will
-     * also announce a winner and reward.
+     * This void method starts the battle. Stats are applied
+     * to the two codeamon and weather conditions are announced.
+     * The program will display details of each attack, and
+     * how much health the current codeamon has left. Program
+     * will display an output when a codeamon has fainted.
+     * This method will also announce a winner and reward.
      */
     public Codeamon fight() {
         int round = 1;
@@ -92,7 +102,7 @@ public class Battle {
             mon2.stats.health = mon2.stats.health + damage1;
             System.out.println(mon2.name + " has " + mon2.stats.health + " health left");
 
-            if (mon2.stats.health <= 0.0){
+            if (mon2.stats.health <= 0.0) {
                 System.out.println(mon2.name + " has fainted in round " + round);
                 return mon1;
             }
@@ -106,7 +116,7 @@ public class Battle {
             mon1.stats.health = mon1.stats.health - damage2;
             System.out.println(mon1.name + " has " + mon1.stats.health + " health left");
 
-            if (mon1.stats.health <= 0.0){
+            if (mon1.stats.health <= 0.0) {
                 System.out.println(mon1.name + " has fainted in round " + round);
                 return mon2;
             }
@@ -144,26 +154,28 @@ public class Battle {
 
     /**
      * This method implements the calculation of damage for one specific attack.
-     * One monster attacks with the given damage, the dealt damage is then calculated through
+     * One codeamon attacks with the given damage, the dealt damage is then calculated through
      * (pAttackDamage * pAttacker.weatherBonus * pAttacker.typeBonus) -
      (pDefender.stats.defense * pDefender.weatherBonus * pDefender.typeBonus)
      * If the initial pAttackDamage is 0, then the damage dealt is 0. If the totalDamage calculated
      * is negative, the totalDamage dealt should be 1. Any positive value is the total damage dealt.
-     * Weather bonus: see the Environment which you can assume is correct. You need to check though if the weather bonus is applied
+     * Weather bonus: see the Environment which you can assume is correct. 
+     * You need to check though if the weather bonus is applied
      * correctly, since maybe the method does not use the environment correctly.
-     * or debuffed based on the weather. EG. fire monsters have a stat advantage of +25% in sunny weather
-     * while they have a stat disadvantage of -25% in the rain.
-     * If the attack chosen, matches the monsters type, the attacker will get an extra 20% on its attack.
-     * Type bonus: Certain monsters have an attack bonus against others:
+     * or debuffed based on the weather. EG. fire codeamons have a stat advantage of 
+     * +25% in sunny weather while they have a stat disadvantage of -25% in the rain.
+     * If the attack chosen, matches the codeamons type, the attacker will get an extra 20% 
+     * on its attack.
+     * Type bonus: Certain codeamons have an attack bonus against others:
      *     Fire against Water: Water gains 25% while Fire looses 25%
      *     Fire against Ground: Fire gains 25% while Ground looses 25%
-     *     Ground against Water: Ground gains 25% while Water looses 25%
+     *     Ground against Water: Water gains 25% while Ground looses 25%
      *     Normal mon: never gain any type bonus and are weaker during droughts.
      * These bonuses do not stack up, they are just applied for every attack.
-     * @param pAttack is the attack value given to the method where that attack value is based on the
-     *                 monsters damage value
-     * @param pAttacker the attacking monster
-     * @param pDefender the defending monster (the defending monster will never get damage)
+     * @param pAttack is the attack value given to the method where that attack value 
+     *                is based on the codeamons damage value
+     * @param pAttacker the attacking codeamon
+     * @param pDefender the defending codeamon (the defending codeamon will never get damage)
      * to calculate damage output.
      * @return total damage output
      */
@@ -194,13 +206,13 @@ public class Battle {
             pDefender.typeBonus = 0.75;
         }
 
-        if (this.battleWeather.GetBuffedType().equals(pAttacker.type)) {
+        if (this.battleWeather.getBuffedType().equals(pAttacker.type)) {
             pAttacker.weatherBonus = this.battleWeather.buffModifier;
         } else if (this.battleWeather.getDebuffedType().equals(pAttacker.type)) {
             pAttacker.weatherBonus = this.battleWeather.debuffModifier;
         }
 
-        if (this.battleWeather.GetBuffedType().equals(pDefender.type)) {
+        if (this.battleWeather.getBuffedType().equals(pDefender.type)) {
             pDefender.weatherBonus = this.battleWeather.buffModifier;
         } else if (this.battleWeather.getDebuffedType().equals(pAttacker.type)) {
             pDefender.weatherBonus = this.battleWeather.debuffModifier;
@@ -215,9 +227,9 @@ public class Battle {
             totalDamage = 0.0;
         } else if (damage < 0.0) {
             totalDamage = 1.0;
-        } else if (damage > 0.0){
-            totalDamage = (damage * pAttacker.weatherBonus * pAttacker.typeBonus) -
-                    (pDefender.stats.defense * pDefender.weatherBonus * pDefender.typeBonus);
+        } else if (damage > 0.0) {
+            totalDamage = (damage * pAttacker.weatherBonus * pAttacker.typeBonus)
+                    - (pDefender.stats.defense * pDefender.weatherBonus * pDefender.typeBonus);
         }
 
         return (double)Math.round(totalDamage);
