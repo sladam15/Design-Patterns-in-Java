@@ -1,15 +1,29 @@
+/**
+ Class:	Stats.java
+ Description: The following class determines attributes of
+ attack, defense, and health given to particular codeamons.
+ */
+
 public class Stats {
 
     double attack;
     double defense;
     double health;
 
+    /**
+     * Default constructor (though not used for the current program)
+     * is set up with defaults for attack, defense, and health attributes.
+     */
     public Stats() {
         attack = 50;
         defense = 50;
         health = 100;
     }
 
+    /**
+     * Constructor is set up with defaults for attack, defense, and health attributes
+     * for Codeamon of a certain name.
+     */
     public Stats(Codeamon.Name name) {
         switch (name) {
             case CUBONE:
@@ -33,6 +47,5 @@ public class Stats {
                 health = 110;
                 break;
         }
-
     }
 }

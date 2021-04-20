@@ -1,3 +1,16 @@
+/*
+  File:	SER316-Assignment5-sladam15
+  Author: Sean Adams
+  Date:	4/20/21
+  Description: The main sets up objects of trainers, codeamons,
+  and battles that are used to display a battle between 2 codeamon
+  and 2 trainers. Cycles of up to 3 days/nights are performed.
+  User will be asked if they'd like to evolve their codeamon in the
+  night. Battles between trainers can only occur during the day.
+  Results after battle are displayed through other parts of the
+  program.
+*/
+
 import java.util.Scanner;
 
 public class Main {
@@ -6,7 +19,10 @@ public class Main {
         int cycle = 1;
 
         Trainer trainer = new Trainer(Trainer.Name.ASH);
+        trainer.showMessage();  // singleton design pattern
+
         Trainer trainer2 = new Trainer(Trainer.Name.MISTY);
+        trainer2.showMessage();  // singleton design pattern
 
         Codeamon codeamon1 = new Codeamon(Codeamon.Name.CUBONE);
         Codeamon codeamon2 = new Codeamon(Codeamon.Name.MACHOP);
@@ -16,6 +32,8 @@ public class Main {
 
 
         System.out.println("\nPreparing the World of Codeamon!");
+
+        // Day 1 - All Codeamon
         System.out.println("Day " + cycle);
         Battle fight1 = new Battle(trainer, trainer2, codeamon1, codeamon2);
         fight1.setEnvironment(Environment.Weather.rainy);
@@ -24,7 +42,7 @@ public class Main {
         System.out.println("------------------------------");
         System.out.println();
 
-
+        // Night 1 - All Codeamon
         System.out.println("Night " + cycle);
         fight1.setEnvironment(Environment.Weather.neutral);
         Scanner myObj = new Scanner(System.in);  // Create a Scanner object
@@ -35,6 +53,7 @@ public class Main {
 
             cycle++;
 
+            // Day 2 - Evolved Codeamon
             System.out.println("Day " + cycle);
             Battle fight2 = new Battle(trainer, trainer2, codeamon5, codeamon4);
             fight2.setEnvironment(Environment.Weather.sunny);
@@ -47,10 +66,8 @@ public class Main {
             System.out.println("Night " + cycle);
             fight1.setEnvironment(Environment.Weather.rainy);
         } else {
-            System.out.println(input);
 
-            cycle++;
-            System.out.println("------------------------------");
+            // Day 2 - Normal Codeamon
             System.out.println("Day " + cycle);
             Battle fight2 = new Battle(trainer, trainer2, codeamon1, codeamon3);
             fight2.setEnvironment(Environment.Weather.sunny);
@@ -60,6 +77,7 @@ public class Main {
             System.out.println("------------------------------");
             System.out.println();
 
+            // Night 2 - Normal Codeamon
             System.out.println("Night " + cycle);
             fight1.setEnvironment(Environment.Weather.rainy);
 
@@ -69,6 +87,7 @@ public class Main {
         if ((input.equals("Y")) || (input.equals("y"))) {
             System.out.println("Your codeamon has already evolved to its final form!");
 
+            // Day 3 - Evolved Codeamon
             System.out.println("Day " + cycle);
             Battle fight2 = new Battle(trainer, trainer2, codeamon5, codeamon4);
             fight2.setEnvironment(Environment.Weather.sunny);

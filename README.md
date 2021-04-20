@@ -4,17 +4,18 @@ Runs through gradle, Travis CI, Checkstyle, Spotbugs, and basic test setup.
 
 Summary for Design Pattern:
 
-1. Composite Pattern which has different moves a code-a-mon can perform
-while in battle. Multiple objects included in one object may feature attack, 
-heal,evolve, or switch to another code-a-mon.
+1. Observer Design Pattern which will create observer classes and notify them 
+when a new Codeamon object is created. I wanted this to be on the Attack.java
+class but thought it could get messy with all the notifications.
 
-2. Factory Pattern to build new code-a-mon or trainers.
+2. Decorator Design Pattern will help with Codeamon evolutions. Since an evolution
+resembles a normal Codeamon, I thought this may be a good route for having "special"
+Codeamon with advanced features.
 
-3. Observer Pattern will overlook a Battle and observe the objects used in 
-the event.
+3. Singleton Design Pattern will help ensure only one Trainer class gets created at a
+time. Almost acts like the Observer class, displaying an ouput whenever a Trainer object
+has been created.
 
-(these may be subject to change if they are too difficult and would like to
-try another design pattern)
 
 B) PDF document submitted in Canvas with questions and answers pertaining to
 my Design Patterns.
