@@ -27,6 +27,7 @@ public class Stats {
     public Stats(Codeamon.Name name) {
         switch (name) {
             case CUBONE:
+            case MAROWAK:
                 attack = 45;
                 defense = 35;
                 health = 100;
